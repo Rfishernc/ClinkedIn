@@ -11,5 +11,10 @@ namespace ClinkedIn.Controllers
     [ApiController]
     public class MemberController : ControllerBase
     {
+        [HttpGet("{id}")]
+        public ActionResult<string> GetMember(int id)
+        {
+            return "";
+        }
     }
 }
