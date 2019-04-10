@@ -17,5 +17,12 @@ namespace ClinkedIn.Models
         public List<int> Friends { get; set; }
         public List<int> Enemies { get; set; }
         public List<string> Services { get; set; }
+
+        public Member(MemberJoinRequest joinRequest)
+        {
+            Username = joinRequest.Username;
+            Interests = joinRequest.Interests;
+            Services = joinRequest.Services;
+        }
     }
 }
