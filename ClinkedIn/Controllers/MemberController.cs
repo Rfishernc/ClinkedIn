@@ -20,10 +20,14 @@ namespace ClinkedIn.Controllers
             _memberRepo = new MemberRepo();
         }
 
-
-
         [HttpGet("{id}")]
         public ActionResult<Member> GetMember(int id) => _memberRepo.GetMember(id);
-        
+
+        [HttpGet()]
+        public ActionResult<> GetFriends(int id)
+        {
+
+        }
+
     }
 }
