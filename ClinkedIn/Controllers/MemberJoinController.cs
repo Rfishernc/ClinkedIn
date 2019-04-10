@@ -14,12 +14,12 @@ namespace ClinkedIn.Controllers
     [ApiController]
     public class MemberJoinController : ControllerBase
     {
-        readonly MembersData _Members;
+        readonly MemberRepo _Members;
         readonly MemberJoinValidator _Validator;
 
         public MemberJoinController()
         {
-            _Members = new MembersData();
+            _Members = new MemberRepo();
             _Validator = new MemberJoinValidator();
         }
 

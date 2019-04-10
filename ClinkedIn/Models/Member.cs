@@ -8,7 +8,7 @@ namespace ClinkedIn.Models
     public class Member
     {
 
-        public int Id { get; }
+        public int Id { get; set; }
         public string Username { get; set; }
         static int idCounter = 0;
 
@@ -19,6 +19,11 @@ namespace ClinkedIn.Models
         public List<int> Friends { get; set; }
         public List<int> Enemies { get; set; }
         public List<string> Services { get; set; }
+
+        public Member()
+        {
+
+        }
 
         public Member(MemberJoinRequest joinRequest)
         {

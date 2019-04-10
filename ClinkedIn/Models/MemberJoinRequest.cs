@@ -9,8 +9,6 @@ namespace ClinkedIn.Models
     {
         public string Username { get; set; }
         public List<string> Interests { get; set; }
-        public List<int> Friends { get; set; }
-        public List<int> Enemies { get; set; }
         public List<string> Services { get; set; }
     }
 }
