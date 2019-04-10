@@ -11,18 +11,20 @@ namespace ClinkedIn.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MemberController : ControllerBase
+    public class FindMembersController : ControllerBase
     {
         readonly MemberRepo _memberRepo;
 
-        public MemberController()
+        public FindMembersController()
         {
             _memberRepo = new MemberRepo();
         }
 
-
-
-        [HttpGet("{id}")]
-        public ActionResult<Member> GetMember(int id) => _memberRepo.GetMember(id);
+        [HttpGet]
+        public ActionResult<List<Member>> GetMembersByInterest()
+        {
+            _memberRepo.FindMembersByInterest()
+            return new List<Member>();
+        }
     }
 }

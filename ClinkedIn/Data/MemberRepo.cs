@@ -42,6 +42,24 @@ namespace ClinkedIn.Data
             .Find(member => member.Id == memberId);
             return selectedMember;
         }
+
+        public List<Member> FindMembersByInterest(int[] interestIds)
+        {
+            List<Member> matchedMembers = new List<Member>();
+            foreach (var member in _Members)
+            {
+                foreach (var interestId in interestIds)
+                {
+                    if(member.Interests.Contains(interestId))
+                    {
+                        matchedMembers.Add(member);
+                    }
+                }
+            }
+
+            
+            return matchedMembers.Distinct().ToList();
+        }
     }
 }
 
