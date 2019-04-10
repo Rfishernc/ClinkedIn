@@ -7,5 +7,9 @@ namespace ClinkedIn.Validators
 {
     public class MemberJoinValidator
     {
+        public bool Validate()
+        {
+            return true;
+        }
     }
 }

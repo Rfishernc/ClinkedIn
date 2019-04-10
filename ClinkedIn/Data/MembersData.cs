@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ClinkedIn.Database
+namespace ClinkedIn.Data
 {
     public class MembersData
     {
