@@ -22,6 +22,7 @@ namespace ClinkedIn.Controllers
 
         [HttpGet("{id}")]
         public ActionResult<Member> GetMember(int id) => _memberRepo.GetMember(id);
+<<<<<<< HEAD
 
         [HttpGet()]
         public ActionResult<> GetFriends(int id)
@@ -29,5 +30,7 @@ namespace ClinkedIn.Controllers
 
         }
 
+=======
+>>>>>>> master
     }
 }
