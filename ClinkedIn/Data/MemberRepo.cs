@@ -25,12 +25,10 @@ namespace ClinkedIn.Data
             }
         };
 
-        // Add member to list
-        public Member AddMember(Member newMember)
-            {
-                _Members.Add(newMember);
-                return newMember;
-            }
+        public void AddNewMember(Member newMember)
+        {
+            _Members.Add(newMember);
+        }
 
         // give access to list from other files
         public List<Member> exposeMembers() => _Members;

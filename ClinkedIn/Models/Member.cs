@@ -8,8 +8,9 @@ namespace ClinkedIn.Models
     public class Member
     {
 
-        public int Id { get; }
+        public int Id { get; set; }
         public string Username { get; set; }
+        static int idCounter = 0;
 
         // Interests type is placeholder change to correct type once implemented.
         public List<int> Interests { get; set; }
@@ -19,11 +20,16 @@ namespace ClinkedIn.Models
         public List<int> Enemies { get; set; }
         public List<string> Services { get; set; }
 
-        // Make different Ids for each member
-        static int idCounter = 0;
-
         public Member()
         {
+
+        }
+
+        public Member(MemberJoinRequest joinRequest)
+        {
+            Username = joinRequest.Username;
+            Interests = joinRequest.Interests;
+            Services = joinRequest.Services;
             Id = idCounter;
             idCounter++;
         }
