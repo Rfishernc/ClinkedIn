@@ -10,6 +10,7 @@ namespace ClinkedIn.Data
     {
         static List<Member> _Members = new List<Member>()
         {
+            // ======= Seed data for members =======
             new Member()
             {
                 Username = "Dave"
@@ -24,12 +25,14 @@ namespace ClinkedIn.Data
             }
         };
 
+        // Add member to list
         public Member AddMember(Member newMember)
             {
                 _Members.Add(newMember);
                 return newMember;
             }
 
+        // give access to list from other files
         public List<Member> exposeMembers() => _Members;
     }
 }

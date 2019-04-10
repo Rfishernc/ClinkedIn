@@ -19,6 +19,7 @@ namespace ClinkedIn.Models
         public List<int> Enemies { get; set; }
         public List<string> Services { get; set; }
 
+        // Make different Ids for each member
         static int idCounter = 0;
 
         public Member()
