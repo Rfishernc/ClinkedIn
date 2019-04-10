@@ -2,6 +2,13 @@
 
 namespace ClinkedIn.Models
 {
+    // shape of json get request for FindMembersController
+    public class InterstFilter
+    {
+        public int[] InterestIds { get; set; }
+    }
+
+    // interests for inmates
     enum Interests
     {
         [Description("Toilet wine crafting and drinking")]

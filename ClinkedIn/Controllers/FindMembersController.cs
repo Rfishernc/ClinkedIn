@@ -20,11 +20,21 @@ namespace ClinkedIn.Controllers
             _memberRepo = new MemberRepo();
         }
 
+
+        /* to hit get request properly, pass JSON in the body shaped like this:
+         * ====================================================================
+         * {
+	     *   "InterestIds": [int] // interest ids to match members by 
+         * }
+         * ====================================================================
+         * 
+         * It will return an array of members with all related properties
+         */
         [HttpGet]
-        public ActionResult<List<Member>> GetMembersByInterest()
+        public ActionResult<List<Member>> GetMembersByInterest(InterstFilter interestIds)
         {
-            _memberRepo.FindMembersByInterest()
-            return new List<Member>();
+            var matchedMembers = _memberRepo.FindMembersByInterest(interestIds);
+            return matchedMembers;
         }
     }
 }

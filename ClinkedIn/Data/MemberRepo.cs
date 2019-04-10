@@ -13,15 +13,18 @@ namespace ClinkedIn.Data
             // ======= Seed data for members =======
             new Member()
             {
-                Username = "Dave"
+                Username = "Dave",
+                Interests = new List<int>(){0,1}
             },
             new Member()
             {
-                Username = "Jessica"
+                Username = "Jessica",
+                Interests = new List<int>(){0,2,3}
             },
             new Member()
             {
-                Username = "Debbie"
+                Username = "Debbie",
+                Interests = new List<int>(){1,3,4}
             }
         };
 
@@ -41,21 +44,24 @@ namespace ClinkedIn.Data
             return selectedMember;
         }
 
-        public List<Member> FindMembersByInterest(int[] interestIds)
+        public List<Member> FindMembersByInterest(InterstFilter interestIds)
         {
             List<Member> matchedMembers = new List<Member>();
             foreach (var member in _Members)
             {
-                foreach (var interestId in interestIds)
+                // Validation to ensure any members with no interets are skipped
+                if(member.Interests != null)
                 {
-                    if(member.Interests.Contains(interestId))
+                    foreach (var interestId in interestIds.InterestIds)
                     {
-                        matchedMembers.Add(member);
+                        if(member.Interests.Contains(interestId))
+                        {
+                            matchedMembers.Add(member);
+                        }
                     }
                 }
             }
-
-            
+            // remove duplicate members that matched on multiple IDs
             return matchedMembers.Distinct().ToList();
         }
     }
