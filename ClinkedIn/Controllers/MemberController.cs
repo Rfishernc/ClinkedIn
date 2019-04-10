@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClinkedIn.Data;
+using ClinkedIn.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +13,17 @@ namespace ClinkedIn.Controllers
     [ApiController]
     public class MemberController : ControllerBase
     {
-        [HttpGet("{id}")]
-        public ActionResult<string> GetMember(int id)
+        readonly MemberRepo _memberRepo;
+
+        public MemberController()
         {
-            return "";
+            _memberRepo = new MemberRepo();
         }
+
+
+
+        [HttpGet("{id}")]
+        public ActionResult<Member> GetMember(int id) => _memberRepo.GetMember(id);
+        
     }
 }
