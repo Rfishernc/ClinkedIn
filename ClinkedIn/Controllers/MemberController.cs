@@ -25,5 +25,12 @@ namespace ClinkedIn.Controllers
         [HttpGet("{id}")]
         public ActionResult<Member> GetMember(int id) => _memberRepo.GetMember(id);
         
+        [HttpGet("enemies")]
+        public ActionResult GetEnemies(GetEnemiesRequest enemiesRequest)
+        {
+            var user = _memberRepo.GetMember(enemiesRequest.MemberId);
+            user.GetEnemies();
+            return Accepted();
+        }
     }
 }

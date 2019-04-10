@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinkedIn.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -32,6 +33,14 @@ namespace ClinkedIn.Models
             Services = joinRequest.Services;
             Id = idCounter;
             idCounter++;
+        }
+
+        public List<Member> GetEnemies()
+        {
+            var enemies = from enemy in Enemies
+                           join member in MemberRepo._Members on enemy equals member.Id
+                           select member;
+            return enemies.ToList();
         }
     }
 }
