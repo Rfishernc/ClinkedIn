@@ -17,13 +17,14 @@ namespace ClinkedIn.Models
         public List<string> Interests { get; set; }
         //End comment
 
-        public List<int> Friends { get; set; }
-        public List<int> Enemies { get; set; }
+        public List<int> Friends { get; set; } = new List<int>();
+        public List<int> Enemies { get; set; } = new List<int>();
         public List<string> Services { get; set; }
 
         public Member()
         {
-
+            Id = idCounter;
+            idCounter++;
         }
 
         public Member(MemberJoinRequest joinRequest)
