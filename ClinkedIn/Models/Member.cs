@@ -13,7 +13,7 @@ namespace ClinkedIn.Models
         static int idCounter = 0;
 
         // Interests type is placeholder change to correct type once implemented.
-        public List<string> Interests { get; set; }
+        public List<int> Interests { get; set; }
         //End comment
 
         public List<int> Friends { get; set; }

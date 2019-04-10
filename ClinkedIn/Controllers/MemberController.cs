@@ -24,6 +24,5 @@ namespace ClinkedIn.Controllers
 
         [HttpGet("{id}")]
         public ActionResult<Member> GetMember(int id) => _memberRepo.GetMember(id);
-        
     }
 }
