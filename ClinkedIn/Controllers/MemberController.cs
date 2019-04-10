@@ -23,14 +23,7 @@ namespace ClinkedIn.Controllers
 
 
         [HttpGet("{id}")]
-        public ActionResult<Member> GetMember(int id)
-        {
-            Member selectedMember = _memberRepo
-                // checks the member list
-                .exposeMembers()
-                // finds member based on Id
-                .Find(member => member.Id == id);
-            return selectedMember;
-        }
+        public ActionResult<Member> GetMember(int id) => _memberRepo.GetMember(id);
+        
     }
 }

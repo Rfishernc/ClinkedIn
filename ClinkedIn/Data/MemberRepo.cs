@@ -34,6 +34,14 @@ namespace ClinkedIn.Data
 
         // give access to list from other files
         public List<Member> exposeMembers() => _Members;
+
+        public Member GetMember(int memberId)
+        {
+            Member selectedMember = _Members
+            // finds member based on Id
+            .Find(member => member.Id == memberId);
+            return selectedMember;
+        }
     }
 }
 
