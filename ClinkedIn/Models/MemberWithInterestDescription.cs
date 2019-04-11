@@ -15,6 +15,7 @@ namespace ClinkedIn.Models
         public List<int> Enemies { get; set; }
         public List<string> Services { get; set; }
 
+        // Creates a member with a list of interests in string form
         public MemberWithInterestDescription(Member member)
         {
             Id = member.Id;
@@ -23,10 +24,13 @@ namespace ClinkedIn.Models
             Enemies = member.Enemies;
             Services = member.Services;
 
-            var singleInterest = typeof(EInterests).GetFields();
 
             var interests = member.Interests;
-            // loop over interest id's and return description
+
+            var singleInterest = typeof(EInterests).GetFields();
+            /* loop over interest id's and return description
+             * Not sure why it is so difficult to get description info from Enums
+             * A simple database will likely render this unecessary */
             foreach (var interest in interests)
             {
                 var interestAttributes = singleInterest[interest + 1].CustomAttributes.ToList();

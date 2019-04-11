@@ -39,5 +39,11 @@ namespace ClinkedIn.Models
                            select member;
             return enemies.ToList();
         }
+
+        // converts interest IDs to strings
+        public MemberWithInterestDescription ConvertInterests()
+        {
+            return new MemberWithInterestDescription(this);
+        }
     }
 }
