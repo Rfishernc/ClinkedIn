@@ -8,7 +8,7 @@ namespace ClinkedIn.Data
 {
     public class MemberRepo
     {
-        static List<Member> _Members = new List<Member>()
+        public static List<Member> _Members = new List<Member>()
         {
             // ======= Seed data for members =======
             new Member()
