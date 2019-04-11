@@ -9,6 +9,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace ClinkedIn
 {
@@ -17,10 +19,6 @@ namespace ClinkedIn
 
         public static void Main(string[] args)
         {
-            int value = 1;
-            var description = (EInterests)value;
-            var x = typeof(EInterests);
-
             CreateWebHostBuilder(args).Build().Run();
         }
 

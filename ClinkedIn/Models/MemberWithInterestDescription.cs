@@ -10,27 +10,30 @@ namespace ClinkedIn.Models
     {
         public int Id { get; set; }
         public string Username { get; set; }
-        static int idCounter = 0;
-        public List<string> Interests { get; set; }
+        public List<string> Interests { get; set; } = new List<string>();
         public List<int> Friends { get; set; }
         public List<int> Enemies { get; set; }
         public List<string> Services { get; set; }
 
-        public MemberWithInterestDescription(Member member, Enum en)
+        public MemberWithInterestDescription(Member member)
         {
-            //var interests = member.Interests;
-            //Type type = en.GetType();
+            Id = member.Id;
+            Username = member.Username;
+            Friends = member.Friends;
+            Enemies = member.Enemies;
+            Services = member.Services;
 
-            //MemberInfo[] memInfo = type.GetMember(en.ToString());
-            //foreach (var interest in interests)
-            //{
-            //    ;
-            //    Console.Write(x);
-            //}
+            var singleInterest = typeof(EInterests).GetFields();
 
-            int value = 1;
-            var description = (EInterests)value;
-            var x = typeof(EInterests).CustomAttributes;
+            var interests = member.Interests;
+            // loop over interest id's and return description
+            foreach (var interest in interests)
+            {
+                var interestAttributes = singleInterest[interest + 1].CustomAttributes.ToList();
+                var interestDescription = interestAttributes[0].ConstructorArguments[0].Value.ToString();
+
+                Interests.Add(interestDescription);
+            }
         }
     }
 }
