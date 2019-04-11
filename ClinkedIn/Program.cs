@@ -14,8 +14,13 @@ namespace ClinkedIn
 {
     public class Program
     {
+
         public static void Main(string[] args)
         {
+            int value = 1;
+            var description = (EInterests)value;
+            var x = typeof(EInterests);
+
             CreateWebHostBuilder(args).Build().Run();
         }
 

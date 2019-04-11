@@ -9,7 +9,7 @@ namespace ClinkedIn.Models
     }
 
     // interests for inmates
-    enum Interests
+    public enum EInterests
     {
         [Description("Toilet wine crafting and drinking")]
         Wine,
