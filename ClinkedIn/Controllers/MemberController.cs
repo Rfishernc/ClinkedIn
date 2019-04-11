@@ -29,9 +29,10 @@ namespace ClinkedIn.Controllers
         [HttpGet("enemies")]
         public ActionResult GetEnemies(GetEnemiesRequest enemiesRequest)
         {
-            if (!_validator.ValidateGetEnemies())
+            var validation = _validator.ValidateGetEnemies(enemiesRequest);
+            if (!validation.IsValid)
             {
-                return BadRequest(new { error = "Required info missing." });
+                return BadRequest(new { error = validation.ErrorMessage });
             }
             var user = _memberRepo.GetMember(enemiesRequest.MemberId);
             var enemiesList = user.GetEnemies();
@@ -41,9 +42,10 @@ namespace ClinkedIn.Controllers
         [HttpPost("enemies")]
         public ActionResult AddEnemy(AddEnemyRequest addEnemyRequest)
         {
-            if (!_validator.ValidateAddEnemy())
+            var validation = _validator.ValidateAddEnemy(addEnemyRequest);
+            if (!validation.IsValid)
             {
-                return BadRequest(new { error = "Required info missing." });
+                return BadRequest(new { error = validation.ErrorMessage });
             }
             var user = _memberRepo.GetMember(addEnemyRequest.MemberId);
             user.Enemies.Add(addEnemyRequest.EnemyId);
@@ -54,9 +56,10 @@ namespace ClinkedIn.Controllers
         [HttpDelete("enemies")]
         public ActionResult RemoveEnemy(RemoveEnemyRequest removeEnemyRequest)
         {
-            if (!_validator.ValidateRemoveEnemy())
+            var validation = _validator.ValidateRemoveEnemy(removeEnemyRequest);
+            if (!validation.IsValid)
             {
-                return BadRequest(new { error = "Required info missing." });
+                return BadRequest(new { error = validation.ErrorMessage });
             }
             var user = _memberRepo.GetMember(removeEnemyRequest.MemberId);
             user.Enemies.Remove(removeEnemyRequest.EnemyId);
