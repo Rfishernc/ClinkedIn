@@ -41,6 +41,7 @@ namespace ClinkedIn.Data
             Member selectedMember = _Members
             // finds member based on Id
             .Find(member => member.Id == memberId);
+
             return selectedMember;
         }
 
