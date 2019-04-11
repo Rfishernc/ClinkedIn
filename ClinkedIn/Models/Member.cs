@@ -12,11 +12,7 @@ namespace ClinkedIn.Models
         public int Id { get; set; }
         public string Username { get; set; }
         static int idCounter = 0;
-
-        // Interests type is placeholder change to correct type once implemented.
         public List<int> Interests { get; set; }
-        //End comment
-
         public List<int> Friends { get; set; } = new List<int>();
         public List<int> Enemies { get; set; } = new List<int>();
         public List<string> Services { get; set; }
@@ -42,6 +38,12 @@ namespace ClinkedIn.Models
                            join member in MemberRepo._Members on enemy equals member.Id
                            select member;
             return enemies.ToList();
+        }
+
+        // converts interest IDs to strings
+        public MemberWithInterestDescription ConvertInterests()
+        {
+            return new MemberWithInterestDescription(this);
         }
     }
 }
