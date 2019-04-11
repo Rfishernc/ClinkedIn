@@ -7,6 +7,6 @@ namespace ClinkedIn.Models
 {
     public class GetFriendsRequest
     {
-        public int Id { get; set; }
+        public int FriendId;
     }
 }

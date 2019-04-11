@@ -25,18 +25,7 @@ namespace ClinkedIn.Controllers
 
         [HttpGet("{id}")]
         public ActionResult<Member> GetMember(int id) => _memberRepo.GetMember(id);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-        [HttpGet()]
-        public ActionResult<> GetFriends(int id)
-        {
-
-        }
-
-=======
->>>>>>> master
-=======
 
         [HttpGet("enemies")]
         public ActionResult GetEnemies(GetEnemiesRequest enemiesRequest)
@@ -75,6 +64,17 @@ namespace ClinkedIn.Controllers
 
             return Accepted($"api/members/{user.Id}/enemies", user.Enemies);
         }
->>>>>>> master
+
+        [HttpGet("friends")]
+        public ActionResult GetFriends(GetFriendsRequest getFriendsRequest)
+        {
+            if (!_validator.ValidateGetFriends())
+            {
+                return BadRequest();
+            }
+            
+
+        }
+
     }
 }

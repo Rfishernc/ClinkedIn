@@ -21,5 +21,10 @@ namespace ClinkedIn.Validators
         {
             return true;
         }
+
+        public bool ValidateGetFriends()
+        {
+            return true;
+        }
     }
 }
