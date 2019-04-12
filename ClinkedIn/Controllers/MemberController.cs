@@ -66,5 +66,20 @@ namespace ClinkedIn.Controllers
 
             return Accepted($"api/members/{user.Id}/enemies", user.Enemies);
         }
+
+        [HttpGet("release")]
+        public ActionResult GetReleaseDays(GetReleaseDaysRequest releaseDaysRequest)
+        {
+            var validation = _validator.ValidateGetReleaseDays(releaseDaysRequest);
+            if (!validation.IsValid)
+            {
+                return BadRequest(new { error = validation.ErrorMessage });
+            }
+
+            var user = _memberRepo.GetMember(releaseDaysRequest.MemberId);
+            var releaseDays = user.DaysToRelease();
+
+            return Accepted($"api/members/{user.Id}", releaseDays);
+        }
     }
 }

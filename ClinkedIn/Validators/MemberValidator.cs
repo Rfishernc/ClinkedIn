@@ -62,5 +62,18 @@ namespace ClinkedIn.Validators
 
             return new ValidationResponse(true);
         }
+
+        public ValidationResponse ValidateGetReleaseDays(GetReleaseDaysRequest request)
+        {
+            if (MemberRepo._Members.Where(member => member.Id == request.MemberId).Count() == 0)
+            {
+                return new ValidationResponse(false, "Invalid member Id. No member found with matching Id.");
+            } else if (_members.GetMember(request.MemberId).DaysToRelease() <= 0)
+            {
+                return new ValidationResponse(false, "You've already been released. Get outta here!");
+            }
+
+            return new ValidationResponse(true);
+        }
     }
 }
