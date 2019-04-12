@@ -65,6 +65,21 @@ namespace ClinkedIn.Data
             // remove duplicate members that matched on multiple IDs
             return matchedMembers.Distinct().ToList();
         }
+
+        public int[] RemoveInterest(RemoveInterest interestsToRemove)
+        {
+            Member currentMemb = GetMember(interestsToRemove.MemberId);
+            if (!currentMemb.Interests.Intersect(interestsToRemove.InterestId).Any())
+            {
+                throw new Exception("Ya done goofed");
+            }
+            currentMemb.Interests.RemoveAll(membersInterests => 
+            interestsToRemove
+            .InterestId
+            .Contains(membersInterests));
+
+            return interestsToRemove.InterestId;
+        }
     }
 }
 
