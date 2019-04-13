@@ -15,19 +15,22 @@ namespace ClinkedIn.Data
             {
                 Username = "Dave",
                 Interests = new List<int>(){0,1},
-                ReleaseDate = new DateTime(2019, 8, 24)
+                ReleaseDate = new DateTime(2019, 8, 24),
+                Friends = new List<int>(){1,2}
             },
             new Member()
             {
                 Username = "Jessica",
                 Interests = new List<int>(){0,2,3},
-                ReleaseDate = new DateTime(2020, 5, 15)
+                ReleaseDate = new DateTime(2020, 5, 15),
+                Friends = new List<int>(){0,2}
             },
             new Member()
             {
                 Username = "Debbie",
                 Interests = new List<int>(){1,3,4},
-                ReleaseDate = new DateTime(2050, 3, 20)
+                ReleaseDate = new DateTime(2050, 3, 20),
+                Friends = new List<int>(){0,1}
             }
         };
 

@@ -83,5 +83,10 @@ namespace ClinkedIn.Validators
 
             return new ValidationResponse(true);
         }
+
+        public bool ValidateGetFriends()
+        {
+            return true;
+        }
     }
 }

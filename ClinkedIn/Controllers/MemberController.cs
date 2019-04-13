@@ -82,11 +82,27 @@ namespace ClinkedIn.Controllers
             return Accepted($"api/members/{user.Id}/enemies", user.Enemies);
         }
 
+        /*  Send member id in the url*/
+
+        [HttpGet("{id}/friends")]
+        public ActionResult GetFriends(int id)
+        {
+            if (!_validator.ValidateGetFriends())
+            {
+                return BadRequest();
+            }
+            var user = _memberRepo.GetMember(id);
+            var friends = user.GetFriends();
+
+            return Accepted($"api/members/{user.Id}/friends", friends);
+        }
+
         /* Send get to member id/release
         * Returns number of days left in members sentence. */
 
         [HttpGet("{id}/release")]
         public ActionResult GetReleaseDays(int id)
+
         {
             var validation = _validator.ValidateGetReleaseDays(id);
             if (!validation.IsValid)
@@ -99,5 +115,6 @@ namespace ClinkedIn.Controllers
 
             return Accepted($"api/members/{user.Id}", releaseDays);
         }
+
     }
 }

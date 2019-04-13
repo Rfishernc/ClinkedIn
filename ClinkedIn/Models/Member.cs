@@ -48,6 +48,14 @@ namespace ClinkedIn.Models
             return enemies.ToList();
         }
 
+        public List<Member> GetFriends()
+        {
+            var friendsList = from friend in Friends
+                              join member in MemberRepo._Members on friend equals member.Id
+                              select member;
+            return friendsList.ToList();
+        }
+
         // converts interest IDs to strings
         public MemberWithInterestDescription ConvertInterests()
         {
