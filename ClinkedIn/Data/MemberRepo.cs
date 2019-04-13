@@ -16,7 +16,7 @@ namespace ClinkedIn.Data
                 Username = "Dave",
                 Interests = new List<int>(){0,1},
                 ReleaseDate = new DateTime(2019, 8, 24),
-                Friends = new List<int>(){1,2}
+                Friends = new List<int>(){2}
             },
             new Member()
             {
