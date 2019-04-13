@@ -70,4 +70,66 @@ EnemyId: {int matching member to be removed as enemy}
 ## Delete User Friend
 WIP
 
-## Get Find 
+## Get Friends by interest
+`findmembers` - findmembers --
+Pass an array of interest ID's to return an array of members that contain those interest IDs
+```
+InterestIds: [array of ints]
+```
+### Example
+```
+"InterestIds":[1,2]
+```
+
+## Delete Interests
+`interest` - interest --
+Removes interests from the member selected
+Pass the user ID and the interest IDs to remove in the body
+```
+InterestId: {[array of ints]},
+MemberId: {int matching user}
+```
+### Example
+```
+"InterestId": [0],
+"MemberId": 0
+```
+
+## Post User Services
+`service` - service --
+adds array of services to member services list
+```
+MemberId: {int matching user},
+Services: {[array of strings to be listed as services]}
+```
+### Example
+```
+"MemberId": 0,
+"Services": ["licking cell doors", "eating dropped food"]
+```
+
+## Delete User Services
+`service` - service --
+Deletes the matched services from the matched user
+```
+MemberId: {int matching user},
+Services: {[array of strings to be removed as services]}
+```
+### Example
+```
+"MemberId": 0,
+"Services": ["licking cell doors"]
+```
+
+## Get Warden Inmate Access
+`warden` - warden --
+Gets all inmates when the User is the Warden
+Pass the following in the header
+```
+Header - Authorization: Value - {Authorization ID}
+```
+### Example
+```
+Authorization: 123456
+```
+

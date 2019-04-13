@@ -21,7 +21,8 @@ namespace ClinkedIn.Controllers
 
         /* Send the following in the body
          * InterestId: [array of integers]
-         * MemberId: int*/
+         * MemberId: int
+         */
         [HttpDelete]
         public ActionResult<int[]> DeleteInterest(RemoveInterest interestRequest)
         {
