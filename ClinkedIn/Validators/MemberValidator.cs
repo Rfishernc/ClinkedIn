@@ -18,12 +18,12 @@ namespace ClinkedIn.Validators
 
         //Validates that a proper member Id was submitted and that member has enemies for get enemies request.
 
-        public ValidationResponse ValidateGetEnemies(GetEnemiesRequest request)
+        public ValidationResponse ValidateGetEnemies(int request)
         {
-            if (MemberRepo._Members.Where(member => member.Id == request.MemberId).Count() == 0)
+            if (MemberRepo._Members.Where(member => member.Id == request).Count() == 0)
             {
                 return new ValidationResponse(false, "Invalid member Id. No member found with matching Id.");
-            } else if (_members.GetMember(request.MemberId).Enemies.Count == 0)
+            } else if (_members.GetMember(request).Enemies.Count == 0)
             {
                 return new ValidationResponse(false, "Member has no enemies.");
             }

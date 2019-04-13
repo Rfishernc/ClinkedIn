@@ -32,15 +32,15 @@ namespace ClinkedIn.Controllers
          * Returns list of all members enemies with their information*/
 
 
-        [HttpGet("enemies")]
-        public ActionResult GetEnemies(GetEnemiesRequest enemiesRequest)
+        [HttpGet("{id}/enemies")]
+        public ActionResult GetEnemies(int id)
         {
-            var validation = _validator.ValidateGetEnemies(enemiesRequest);
+            var validation = _validator.ValidateGetEnemies(id);
             if (!validation.IsValid)
             {
                 return BadRequest(new { error = validation.ErrorMessage });
             }
-            var user = _memberRepo.GetMember(enemiesRequest.MemberId);
+            var user = _memberRepo.GetMember(id);
             var enemiesList = user.GetEnemies();
             return Accepted($"api/members/{user.Id}/enemies", enemiesList);
         }

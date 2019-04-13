@@ -30,9 +30,10 @@ namespace ClinkedIn.Controllers
         * Returns a list of all inmates information to the warden. */
 
         [HttpGet]
-        public ActionResult GetInmates(GetInmatesRequest getInmatesRequest)
+        public ActionResult GetInmates()
         {
-            var validation = _validator.Validate(getInmatesRequest, _theWarden);
+            int wardenId = int.Parse(Request.Headers["Authorization"]);
+            var validation = _validator.Validate(wardenId, _theWarden);
             if (!validation.IsValid)
             {
                 return BadRequest( new { error = validation.ErrorMessage });
