@@ -72,6 +72,10 @@ namespace ClinkedIn.Controllers
             {
                 return BadRequest();
             }
+            var user = _memberRepo.GetMember(getFriendsRequest.FriendId);
+            var friends = user.Friends();
+
+            return ;
             
 
         }

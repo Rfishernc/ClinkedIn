@@ -40,6 +40,11 @@ namespace ClinkedIn.Models
             return enemies.ToList();
         }
 
+        public List<Member> GetFriends()
+        {
+            var friendsList = /* need a linq method in member class to grab list of friends here*/
+        }
+
         // converts interest IDs to strings
         public MemberWithInterestDescription ConvertInterests()
         {
