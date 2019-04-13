@@ -57,9 +57,9 @@ namespace ClinkedIn.Models
         }
 
         // converts interest IDs to strings
-        public MemberWithInterestDescription ConvertInterests()
+        public MemberWithDescriptions ConvertInterests()
         {
-            return new MemberWithInterestDescription(this);
+            return new MemberWithDescriptions(this);
         }
 
         //returns number of days left till release to nearest whole number (rounding down).
