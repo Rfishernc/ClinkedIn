@@ -86,8 +86,13 @@ namespace ClinkedIn.Data
 
         public Member RemoveServices(RemoveService removeServiceRequest)
         {
+            // gets member by Id
             Member currentMemb = GetMember(removeServiceRequest.MemberId);
 
+            /* for each service requested for removal
+             * check if the member currently offers such service
+             * and remove that service from their list
+             */
             foreach (var service in removeServiceRequest.Services)
             {
                 if (currentMemb.Services.Contains(service))
@@ -96,6 +101,7 @@ namespace ClinkedIn.Data
                 }
             }
 
+            // return member with removed services
             return currentMemb;
         }
     }

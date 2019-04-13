@@ -32,9 +32,8 @@ namespace ClinkedIn.Controllers
         }
 
         [HttpDelete]
-        public ActionResult<Member> RemoveMemberServices(RemoveService removeServiceRequest)
-        {
-            return _memberRepo.RemoveServices(removeServiceRequest);
-        }
+        // Pass a member ID and an array of services to remove
+        public ActionResult<Member> RemoveMemberServices(RemoveService removeServiceRequest) => _memberRepo
+                                                                                    .RemoveServices(removeServiceRequest);
     }
 }
