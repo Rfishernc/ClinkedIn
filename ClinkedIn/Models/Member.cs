@@ -15,7 +15,7 @@ namespace ClinkedIn.Models
         public List<int> Interests { get; set; }
         public List<int> Friends { get; set; } = new List<int>();
         public List<int> Enemies { get; set; } = new List<int>();
-        public List<string> Services { get; set; }
+        public List<string> Services { get; set; } = new List<string>();
         public DateTime ReleaseDate { get; set; }
 
         public Member()
@@ -42,10 +42,10 @@ namespace ClinkedIn.Models
             return enemies.ToList();
         }
 
-        //public List<Member> GetFriends()
-        //{
-        //    var friendsList = /* need a linq method in member class to grab list of friends here*/
-        //}
+        public List<Member> GetFriends()
+        {
+            var friendsList =
+        }
 
         // converts interest IDs to strings
         public MemberWithInterestDescription ConvertInterests()

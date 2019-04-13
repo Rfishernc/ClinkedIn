@@ -68,20 +68,20 @@ namespace ClinkedIn.Controllers
             return Accepted($"api/members/{user.Id}/enemies", user.Enemies);
         }
 
-        //[HttpGet("friends")]
-        //public ActionResult GetFriends(GetFriendsRequest getFriendsRequest)
-        //{
-        //    if (!_validator.ValidateGetFriends())
-        //    {
-        //        return BadRequest();
-        //    }
-        //    var user = _memberRepo.GetMember(getFriendsRequest.FriendId);
-        //    var friends = user.Friends();
+        [HttpGet("friends")]
+        public ActionResult GetFriends(GetFriendsRequest getFriendsRequest)
+        {
+            if (!_validator.ValidateGetFriends())
+            {
+                return BadRequest();
+            }
+            var user = _memberRepo.GetMember(getFriendsRequest.FriendId);
+            var friends = user.GetFriends();
 
-        //    return ;
-            
+            return Accepted($"api/members/{user.Id}/friends", user.Friends);
 
-        //}
+
+        }
 
         [HttpGet("release")]
         public ActionResult GetReleaseDays(GetReleaseDaysRequest releaseDaysRequest)
