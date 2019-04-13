@@ -16,11 +16,17 @@ namespace ClinkedIn.Controllers
         }
 
         [HttpGet]
+        // body should contain "MemberId" and "Services" (an array of string)
         public ActionResult<Member> AddMemberServices(AddService addServiceRequest)
         {
+            // Gets member based on Id
             Member currentMemb = _memberRepo.GetMember(addServiceRequest.MemberId);
 
-            currentMemb.Services.AddRange(addServiceRequest.Services);
+            currentMemb
+                // gets services
+                .Services
+                // adds array of services to current services
+                .AddRange(addServiceRequest.Services);
 
             return currentMemb;
         }
