@@ -25,8 +25,8 @@ namespace ClinkedIn.Controllers
             _theWarden = new Warden() { WardenId = 123456 };
         }
 
-        /* Send the following in the body
-        * Id: int,
+        /* Send the following in the authorization header
+        * wardenId as an int,
         * Returns a list of all inmates information to the warden. */
 
         [HttpGet]

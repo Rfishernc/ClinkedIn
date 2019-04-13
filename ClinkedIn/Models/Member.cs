@@ -15,7 +15,7 @@ namespace ClinkedIn.Models
         public List<int> Interests { get; set; }
         public List<int> Friends { get; set; } = new List<int>();
         public List<int> Enemies { get; set; } = new List<int>();
-        public List<string> Services { get; set; } = new List<string>();
+        public List<string> Services { get; set; }
         public DateTime ReleaseDate { get; set; }
 
         //constructor for seed data
