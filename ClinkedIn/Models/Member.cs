@@ -50,7 +50,7 @@ namespace ClinkedIn.Models
 
         public double DaysToRelease()
         {
-            var daysBetween = (ReleaseDate - DateTime.Now).TotalDays;
+            var daysBetween = Math.Floor((ReleaseDate - DateTime.Now).TotalDays);
 
             return daysBetween;
         }
