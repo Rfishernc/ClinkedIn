@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace ClinkedIn.Validators
 {
+
+    //Validation class for returning appropriate response messages to clients.
+
     public class ValidationResponse
     {
         public bool IsValid { get; set; }

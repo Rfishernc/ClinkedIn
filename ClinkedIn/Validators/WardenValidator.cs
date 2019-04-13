@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace ClinkedIn.Validators
 {
+    //Validates that proper warden id was submitted for warden requests.
+
     public class WardenValidator
     {
         public ValidationResponse Validate(GetInmatesRequest request, Warden warden)
