@@ -18,12 +18,12 @@ namespace ClinkedIn.Validators
 
         //Validates that a proper member Id was submitted and that member has enemies for get enemies request.
 
-        public ValidationResponse ValidateGetEnemies(GetEnemiesRequest request)
+        public ValidationResponse ValidateGetEnemies(int request)
         {
-            if (MemberRepo._Members.Where(member => member.Id == request.MemberId).Count() == 0)
+            if (MemberRepo._Members.Where(member => member.Id == request).Count() == 0)
             {
                 return new ValidationResponse(false, "Invalid member Id. No member found with matching Id.");
-            } else if (_members.GetMember(request.MemberId).Enemies.Count == 0)
+            } else if (_members.GetMember(request).Enemies.Count == 0)
             {
                 return new ValidationResponse(false, "Member has no enemies.");
             }
@@ -71,12 +71,12 @@ namespace ClinkedIn.Validators
 
         //Validates that a proper member Id was submitted and that the member has not been previously released for get days to release request.
 
-        public ValidationResponse ValidateGetReleaseDays(GetReleaseDaysRequest request)
+        public ValidationResponse ValidateGetReleaseDays(int request)
         {
-            if (MemberRepo._Members.Where(member => member.Id == request.MemberId).Count() == 0)
+            if (MemberRepo._Members.Where(member => member.Id == request).Count() == 0)
             {
                 return new ValidationResponse(false, "Invalid member Id. No member found with matching Id.");
-            } else if (_members.GetMember(request.MemberId).DaysToRelease() <= 0)
+            } else if (_members.GetMember(request).DaysToRelease() <= 0)
             {
                 return new ValidationResponse(false, "You've already been released. Get outta here!");
             }

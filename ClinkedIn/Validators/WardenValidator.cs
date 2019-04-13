@@ -10,9 +10,9 @@ namespace ClinkedIn.Validators
 
     public class WardenValidator
     {
-        public ValidationResponse Validate(GetInmatesRequest request, Warden warden)
+        public ValidationResponse Validate(int request, Warden warden)
         {
-            if (request.Id != warden.WardenId)
+            if (request != warden.WardenId)
             {
                 return new ValidationResponse(false, "Incorrect id code.");
             }
