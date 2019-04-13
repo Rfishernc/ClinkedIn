@@ -116,5 +116,23 @@ namespace ClinkedIn.Controllers
             return Accepted($"api/members/{user.Id}", releaseDays);
         }
 
+        /* Send get to member id/friendssquared
+         * Returns a list of your friends friends seperated by your friends names. */
+
+        [HttpGet("{id}/friendssquared")]
+        public ActionResult GetFriendsFriends(int id)
+        {
+            var user = _memberRepo.GetMember(id);
+            var friends = user.GetFriends();
+            var friendsFriends = new Dictionary<string, List<Member>>();
+            foreach(Member friend in friends)
+            {
+                friendsFriends.Add(friend.Username, friend.GetFriends());
+               
+            }
+
+            return Accepted($"api/members/{user.Id}", friendsFriends);
+        } 
+
     }
 }
