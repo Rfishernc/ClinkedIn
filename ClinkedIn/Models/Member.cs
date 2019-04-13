@@ -16,6 +16,7 @@ namespace ClinkedIn.Models
         public List<int> Friends { get; set; } = new List<int>();
         public List<int> Enemies { get; set; } = new List<int>();
         public List<string> Services { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
         public Member()
         {
@@ -28,6 +29,7 @@ namespace ClinkedIn.Models
             Username = joinRequest.Username;
             Interests = joinRequest.Interests;
             Services = joinRequest.Services;
+            ReleaseDate = joinRequest.ReleaseDate;
             Id = idCounter;
             idCounter++;
         }
@@ -44,6 +46,13 @@ namespace ClinkedIn.Models
         public MemberWithInterestDescription ConvertInterests()
         {
             return new MemberWithInterestDescription(this);
+        }
+
+        public double DaysToRelease()
+        {
+            var daysBetween = Math.Floor((ReleaseDate - DateTime.Now).TotalDays);
+
+            return daysBetween;
         }
     }
 }

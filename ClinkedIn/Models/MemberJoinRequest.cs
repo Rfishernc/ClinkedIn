@@ -10,5 +10,6 @@ namespace ClinkedIn.Models
         public string Username { get; set; }
         public List<int> Interests { get; set; }
         public List<string> Services { get; set; }
+        public DateTime ReleaseDate { get; set; }
     }
 }
