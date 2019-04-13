@@ -27,6 +27,11 @@ namespace ClinkedIn.Controllers
         public ActionResult<MemberWithInterestDescription> GetMember(int id) => _memberRepo.GetMember(id).ConvertInterests();
 
 
+
+        /* Send the following in the body
+         * MemberId: int
+         * Returns list of all members enemies with their information*/
+
         [HttpGet("enemies")]
         public ActionResult GetEnemies(GetEnemiesRequest enemiesRequest)
         {
@@ -39,6 +44,11 @@ namespace ClinkedIn.Controllers
             var enemiesList = user.GetEnemies();
             return Accepted($"api/members/{user.Id}/enemies", enemiesList);
         }
+
+        /* Send the following in the body
+         * MemberId: int,
+         * EnemyId: int
+         * Adds requested enemy to members enemy list.  Returns members updated enemy list. */
 
         [HttpPost("enemies")]
         public ActionResult AddEnemy(AddEnemyRequest addEnemyRequest)
@@ -53,6 +63,11 @@ namespace ClinkedIn.Controllers
 
             return Accepted($"api/members/{user.Id}/enemies", user.Enemies);
         }
+
+        /* Send the following in the body
+         * MemberId: int,
+         * EnemyId: int
+         * Removes requested enemy from members enemy list.  Returns members updated enemy list. */
 
         [HttpDelete("enemies")]
         public ActionResult RemoveEnemy(RemoveEnemyRequest removeEnemyRequest)
@@ -82,6 +97,11 @@ namespace ClinkedIn.Controllers
 
 
         }
+
+        /* Send the following in the body
+        * MemberId: int,
+        * Returns number of days left in members sentence. */
+
 
         [HttpGet("release")]
         public ActionResult GetReleaseDays(GetReleaseDaysRequest releaseDaysRequest)

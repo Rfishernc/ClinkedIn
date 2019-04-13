@@ -23,6 +23,13 @@ namespace ClinkedIn.Controllers
             _Validator = new MemberJoinValidator();
         }
 
+        /* Send the following in the body
+        * Username: string,
+        * Interests: [int],
+        * Services: [string],
+        * ReleaseDate: DateTime
+        * Adds a new member to database with the submitted information.  Returns the newly created member with Id.  */
+
         [HttpPost("join")]
         public ActionResult AddMember(MemberJoinRequest joinRequest)
         {

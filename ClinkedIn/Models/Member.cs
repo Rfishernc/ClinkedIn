@@ -18,11 +18,15 @@ namespace ClinkedIn.Models
         public List<string> Services { get; set; } = new List<string>();
         public DateTime ReleaseDate { get; set; }
 
+        //constructor for seed data
+
         public Member()
         {
             Id = idCounter;
             idCounter++;
         }
+
+        //constructor for new requests.
 
         public Member(MemberJoinRequest joinRequest)
         {
@@ -33,6 +37,8 @@ namespace ClinkedIn.Models
             Id = idCounter;
             idCounter++;
         }
+
+        //Loops over each member in database and returns to list if they match any Id on the enemies list.
 
         public List<Member> GetEnemies()
         {
@@ -52,6 +58,8 @@ namespace ClinkedIn.Models
         {
             return new MemberWithInterestDescription(this);
         }
+
+        //returns number of days left till release to nearest whole number (rounding down).
 
         public double DaysToRelease()
         {
