@@ -98,6 +98,19 @@ namespace ClinkedIn.Controllers
             return Accepted($"api/members/{user.Id}/friends", friends);
         }
 
+        [HttpPost("friends")]
+        public ActionResult AddFriends(int id)
+        {
+            if (!_validator.ValidateAddFriends())
+            {
+                return BadRequest();
+            }
+            var user = _memberRepo.GetMember(id);
+            var friends = user.GetFriends();
+
+            return Accepted($"api/members/{user.Id}/friends", friends);
+        }
+
         /* Send the following in the body
         * MemberId: int,
         * Returns number of days left in members sentence. */

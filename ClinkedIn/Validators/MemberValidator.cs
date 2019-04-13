@@ -88,5 +88,10 @@ namespace ClinkedIn.Validators
         {
             return true;
         }
+
+        public bool ValidateAddFriends()
+        {
+            return true;
+        }
     }
 }
