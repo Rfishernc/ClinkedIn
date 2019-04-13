@@ -106,8 +106,9 @@ namespace ClinkedIn.Controllers
             }
             var user = _memberRepo.GetMember(id);
             user.Friends.Add(addFriendRequest.FriendId);
+            var friends = user.GetFriends();
 
-            return Accepted($"api/members/{user.Id}/friends", user.Friends);
+            return Accepted($"api/members/{user.Id}/friends", friends);
         }
 
         [HttpDelete("{id}/friends")]
@@ -119,8 +120,9 @@ namespace ClinkedIn.Controllers
             }
             var user = _memberRepo.GetMember(id);
             user.Friends.Remove(deleteFriendRequest.FriendId);
+            var friends = user.GetFriends();
 
-            return Accepted($"api/members/{user.Id}/friends", user.Friends);
+            return Accepted($"api/members/{user.Id}/friends", friends);
         }
 
         /* Send the following in the body
