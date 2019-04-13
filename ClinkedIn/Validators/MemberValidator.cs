@@ -16,6 +16,8 @@ namespace ClinkedIn.Validators
             _members = new MemberRepo();
         }
 
+        //Validates that a proper member Id was submitted and that member has enemies for get enemies request.
+
         public ValidationResponse ValidateGetEnemies(GetEnemiesRequest request)
         {
             if (MemberRepo._Members.Where(member => member.Id == request.MemberId).Count() == 0)
@@ -28,6 +30,8 @@ namespace ClinkedIn.Validators
 
             return new ValidationResponse(true);
         }
+
+        //Validates that a proper member Id and enemyId  were submitted and that the enemy is not already on members enemy list for add enemy request.
 
         public ValidationResponse ValidateAddEnemy(AddEnemyRequest request)
         {
@@ -44,6 +48,8 @@ namespace ClinkedIn.Validators
 
             return new ValidationResponse(true);
         }
+
+        //Validates that a proper member Id and enemyId  were submitted and that the enemy is on members enemy list for remove enemy request.
 
         public ValidationResponse ValidateRemoveEnemy(RemoveEnemyRequest request)
         {
@@ -62,6 +68,8 @@ namespace ClinkedIn.Validators
 
             return new ValidationResponse(true);
         }
+
+        //Validates that a proper member Id was submitted and that the member has not been previously released for get days to release request.
 
         public ValidationResponse ValidateGetReleaseDays(GetReleaseDaysRequest request)
         {

@@ -8,6 +8,8 @@ namespace ClinkedIn.Validators
 {
     public class MemberJoinValidator
     {
+        //Validates that proper new member info was submitted for username, interests, services, and release date.
+
         public ValidationResponse Validate(MemberJoinRequest request)
         {
             if (string.IsNullOrEmpty(request.Username))
@@ -19,6 +21,9 @@ namespace ClinkedIn.Validators
             } else if (request.Services.Count == 0)
             {
                 return new ValidationResponse(false, "No services submitted");
+            } else if ((request.ReleaseDate - DateTime.Now).TotalMilliseconds <= 0)
+            {
+                return new ValidationResponse(false, "Release date invalid.");
             }
             return new ValidationResponse(true);
         }
