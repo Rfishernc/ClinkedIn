@@ -96,8 +96,6 @@ namespace ClinkedIn.Controllers
             var friends = user.GetFriends();
 
             return Accepted($"api/members/{user.Id}/friends", user.Friends);
-
-
         }
 
         /* Send the following in the body
