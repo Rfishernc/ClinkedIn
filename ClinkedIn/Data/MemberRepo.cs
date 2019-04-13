@@ -83,6 +83,27 @@ namespace ClinkedIn.Data
 
             return interestsToRemove.InterestId;
         }
+
+        public Member RemoveServices(RemoveService removeServiceRequest)
+        {
+            // gets member by Id
+            Member currentMemb = GetMember(removeServiceRequest.MemberId);
+
+            /* for each service requested for removal
+             * check if the member currently offers such service
+             * and remove that service from their list
+             */
+            foreach (var service in removeServiceRequest.Services)
+            {
+                if (currentMemb.Services.Contains(service))
+                {
+                    currentMemb.Services.Remove(service);
+                }
+            }
+
+            // return member with removed services
+            return currentMemb;
+        }
     }
 }
 
