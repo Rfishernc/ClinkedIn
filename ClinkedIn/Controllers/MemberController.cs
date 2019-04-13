@@ -24,7 +24,7 @@ namespace ClinkedIn.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<MemberWithInterestDescription> GetMember(int id) => _memberRepo.GetMember(id).ConvertInterests();
+        public ActionResult<MemberWithDescriptions> GetMember(int id) => _memberRepo.GetMember(id).ConvertInterests();
 
 
         /* Send get to member id/enemies
@@ -40,7 +40,7 @@ namespace ClinkedIn.Controllers
                 return BadRequest(new { error = validation.ErrorMessage });
             }
             var user = _memberRepo.GetMember(id);
-            var enemiesList = user.GetEnemies();
+            var enemiesList = user.GetEnemies().Select(enemy => enemy.ConvertInterests());
             return Accepted($"api/members/{user.Id}/enemies", enemiesList);
         }
 
@@ -115,6 +115,29 @@ namespace ClinkedIn.Controllers
 
             return Accepted($"api/members/{user.Id}", releaseDays);
         }
+
+        /* Send get to member id/friendssquared
+         * Returns a list of your friends friends seperated by your friends names. */
+
+        [HttpGet("{id}/friendssquared")]
+        public ActionResult GetFriendsFriends(int id)
+        {
+            var validation = _validator.ValidateFriendsFriends(id);
+            if (!validation.IsValid)
+            {
+                return BadRequest(new { error = validation.ErrorMessage });
+            }
+            var user = _memberRepo.GetMember(id);
+            var friends = user.GetFriends();
+            var friendsFriends = new Dictionary<string, List<MemberWithDescriptions>>();
+            foreach(Member friend in friends)
+            {
+                friendsFriends.Add(friend.Username, friend.GetFriends()
+                    .Where(friendo => friendo.Id != id).Select(x => x.ConvertInterests()).ToList());          
+            }
+
+            return Accepted($"api/members/{user.Id}", friendsFriends);
+        } 
 
     }
 }

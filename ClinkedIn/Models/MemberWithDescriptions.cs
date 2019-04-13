@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClinkedIn.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -6,22 +7,23 @@ using System.Threading.Tasks;
 
 namespace ClinkedIn.Models
 {
-    public class MemberWithInterestDescription
+    public class MemberWithDescriptions
     {
         public int Id { get; set; }
         public string Username { get; set; }
         public List<string> Interests { get; set; } = new List<string>();
-        public List<int> Friends { get; set; }
-        public List<int> Enemies { get; set; }
+        public List<string> Friends { get; set; }
+        public List<string> Enemies { get; set; }
         public List<string> Services { get; set; }
 
         // Creates a member with a list of interests in string form
-        public MemberWithInterestDescription(Member member)
+        public MemberWithDescriptions(Member member)
         {
+            var members = new MemberRepo();
             Id = member.Id;
             Username = member.Username;
-            Friends = member.Friends;
-            Enemies = member.Enemies;
+            Friends = member.Friends.Select(friendId => members.GetMember(friendId).Username).ToList();
+            Enemies = member.Enemies.Select(enemyId => members.GetMember(enemyId).Username).ToList();
             Services = member.Services;
 
 
