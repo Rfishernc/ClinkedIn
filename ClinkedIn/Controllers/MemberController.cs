@@ -97,17 +97,30 @@ namespace ClinkedIn.Controllers
             return Accepted($"api/members/{user.Id}/friends", friends);
         }
 
-        [HttpPost("friends")]
-        public ActionResult AddFriends(int id)
+        [HttpPost("{id}/friends")]
+        public ActionResult AddFriends(AddFriendRequest addFriendRequest, int id)
         {
             if (!_validator.ValidateAddFriends())
             {
                 return BadRequest();
             }
             var user = _memberRepo.GetMember(id);
-            var friends = user.GetFriends();
+            user.Friends.Add(addFriendRequest.FriendId);
 
-            return Accepted($"api/members/{user.Id}/friends", friends);
+            return Accepted($"api/members/{user.Id}/friends", user.Friends);
+        }
+
+        [HttpDelete("{id}/friends")]
+        public ActionResult DeleteFriends(DeleteFriendRequest deleteFriendRequest, int id)
+        {
+            if (!_validator.ValidateDeleteFriends())
+            {
+                return BadRequest();
+            }
+            var user = _memberRepo.GetMember(id);
+            user.Friends.Remove(deleteFriendRequest.FriendId);
+
+            return Accepted($"api/members/{user.Id}/friends", user.Friends);
         }
 
         /* Send the following in the body

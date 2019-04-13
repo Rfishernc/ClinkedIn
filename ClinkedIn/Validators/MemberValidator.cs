@@ -93,5 +93,10 @@ namespace ClinkedIn.Validators
         {
             return true;
         }
+
+        public bool ValidateDeleteFriends()
+        {
+            return true;
+        }
     }
 }
