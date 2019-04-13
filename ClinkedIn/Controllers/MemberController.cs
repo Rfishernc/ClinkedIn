@@ -97,6 +97,36 @@ namespace ClinkedIn.Controllers
             return Accepted($"api/members/{user.Id}/friends", friends);
         }
 
+        [HttpPost("{id}/friends")]
+        public ActionResult AddFriends(AddFriendRequest addFriendRequest, int id)
+        {
+            if (!_validator.ValidateAddFriends())
+            {
+                return BadRequest();
+            }
+            var user = _memberRepo.GetMember(id);
+            user.Friends.Add(addFriendRequest.FriendId);
+            var friends = user.GetFriends();
+
+            return Accepted($"api/members/{user.Id}/friends", friends);
+        }
+
+        [HttpDelete("{id}/friends")]
+        public ActionResult DeleteFriends(DeleteFriendRequest deleteFriendRequest, int id)
+        {
+            if (!_validator.ValidateDeleteFriends())
+            {
+                return BadRequest();
+            }
+            var user = _memberRepo.GetMember(id);
+            user.Friends.Remove(deleteFriendRequest.FriendId);
+            var friends = user.GetFriends();
+
+            return Accepted($"api/members/{user.Id}/friends", friends);
+        }
+
+        /* Send the following in the body
+        * MemberId: int,
         /* Send get to member id/release
         * Returns number of days left in members sentence. */
 

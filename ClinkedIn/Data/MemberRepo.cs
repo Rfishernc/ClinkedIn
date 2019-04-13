@@ -31,6 +31,13 @@ namespace ClinkedIn.Data
                 Interests = new List<int>(){1,3,4},
                 ReleaseDate = new DateTime(2050, 3, 20),
                 Friends = new List<int>(){0,1}
+            },
+            new Member()
+            {
+                Username = "Member",
+                Interests = new List<int>(){1,3},
+                ReleaseDate = new DateTime(2050, 3, 20),
+                Friends = new List<int>(){}
             }
         };
 

@@ -90,6 +90,17 @@ namespace ClinkedIn.Validators
             return true;
         }
 
+
+        public bool ValidateAddFriends()
+        {
+            return true;
+        }
+
+        public bool ValidateDeleteFriends()
+        {
+            return true;
+        }
+
         public ValidationResponse ValidateFriendsFriends(int request)
         {
             if (MemberRepo._Members.Where(member => member.Id == request).Count() == 0)
@@ -100,6 +111,7 @@ namespace ClinkedIn.Validators
                 return new ValidationResponse(false, "You don't have any friends, loser.");
             }
                 return new ValidationResponse(true);
+
         }
     }
 }
