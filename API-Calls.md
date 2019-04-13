@@ -28,14 +28,14 @@ Optionally pass to the body the following:
 Username: {string},
 Interests: {[An array of ints between 0-5]},
 Services: {[An array of strings]},
-ReleaseDate: {a datetime number}
+ReleaseDate: {YYYY/MM/DD}
 ```
 ### Example 
 ```
 "Username": "Nathan",
 "Interests": [0,3,4],
 "Services": ["building shanks", "using shanks", "smelling flowers"],
-ReleaseDate: 1655174314
+ReleaseDate: "2099/12/26"
 ```
 
 ## Post User Enemy
