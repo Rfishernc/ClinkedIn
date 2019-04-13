@@ -30,9 +30,10 @@ namespace ClinkedIn.Controllers
         [HttpGet("enemies")]
         public ActionResult GetEnemies(GetEnemiesRequest enemiesRequest)
         {
-            if (!_validator.ValidateGetEnemies())
+            var validation = _validator.ValidateGetEnemies(enemiesRequest);
+            if (!validation.IsValid)
             {
-                return BadRequest(new { error = "Required info missing." });
+                return BadRequest(new { error = validation.ErrorMessage });
             }
             var user = _memberRepo.GetMember(enemiesRequest.MemberId);
             var enemiesList = user.GetEnemies();
@@ -42,9 +43,10 @@ namespace ClinkedIn.Controllers
         [HttpPost("enemies")]
         public ActionResult AddEnemy(AddEnemyRequest addEnemyRequest)
         {
-            if (!_validator.ValidateAddEnemy())
+            var validation = _validator.ValidateAddEnemy(addEnemyRequest);
+            if (!validation.IsValid)
             {
-                return BadRequest(new { error = "Required info missing." });
+                return BadRequest(new { error = validation.ErrorMessage });
             }
             var user = _memberRepo.GetMember(addEnemyRequest.MemberId);
             user.Enemies.Add(addEnemyRequest.EnemyId);
@@ -55,9 +57,10 @@ namespace ClinkedIn.Controllers
         [HttpDelete("enemies")]
         public ActionResult RemoveEnemy(RemoveEnemyRequest removeEnemyRequest)
         {
-            if (!_validator.ValidateRemoveEnemy())
+            var validation = _validator.ValidateRemoveEnemy(removeEnemyRequest);
+            if (!validation.IsValid)
             {
-                return BadRequest(new { error = "Required info missing." });
+                return BadRequest(new { error = validation.ErrorMessage });
             }
             var user = _memberRepo.GetMember(removeEnemyRequest.MemberId);
             user.Enemies.Remove(removeEnemyRequest.EnemyId);
@@ -65,19 +68,34 @@ namespace ClinkedIn.Controllers
             return Accepted($"api/members/{user.Id}/enemies", user.Enemies);
         }
 
-        [HttpGet("friends")]
-        public ActionResult GetFriends(GetFriendsRequest getFriendsRequest)
-        {
-            if (!_validator.ValidateGetFriends())
-            {
-                return BadRequest();
-            }
-            var user = _memberRepo.GetMember(getFriendsRequest.FriendId);
-            var friends = user.Friends();
+        //[HttpGet("friends")]
+        //public ActionResult GetFriends(GetFriendsRequest getFriendsRequest)
+        //{
+        //    if (!_validator.ValidateGetFriends())
+        //    {
+        //        return BadRequest();
+        //    }
+        //    var user = _memberRepo.GetMember(getFriendsRequest.FriendId);
+        //    var friends = user.Friends();
 
-            return ;
+        //    return ;
             
 
+        //}
+
+        [HttpGet("release")]
+        public ActionResult GetReleaseDays(GetReleaseDaysRequest releaseDaysRequest)
+        {
+            var validation = _validator.ValidateGetReleaseDays(releaseDaysRequest);
+            if (!validation.IsValid)
+            {
+                return BadRequest(new { error = validation.ErrorMessage });
+            }
+
+            var user = _memberRepo.GetMember(releaseDaysRequest.MemberId);
+            var releaseDays = user.DaysToRelease();
+
+            return Accepted($"api/members/{user.Id}", releaseDays);
         }
 
     }

@@ -26,9 +26,10 @@ namespace ClinkedIn.Controllers
         [HttpPost("join")]
         public ActionResult AddMember(MemberJoinRequest joinRequest)
         {
-            if (!_Validator.Validate())
+            var validation = _Validator.Validate(joinRequest);
+            if (!validation.IsValid)
             {
-                return BadRequest(new { error = "Required member info missing." });
+                return BadRequest(new { error = validation.ErrorMessage });
             }
             var newMember = new Member(joinRequest);
             _Members.AddNewMember(newMember);

@@ -14,17 +14,20 @@ namespace ClinkedIn.Data
             new Member()
             {
                 Username = "Dave",
-                Interests = new List<int>(){0,1}
+                Interests = new List<int>(){0,1},
+                ReleaseDate = new DateTime(2019, 8, 24)
             },
             new Member()
             {
                 Username = "Jessica",
-                Interests = new List<int>(){0,2,3}
+                Interests = new List<int>(){0,2,3},
+                ReleaseDate = new DateTime(2020, 5, 15)
             },
             new Member()
             {
                 Username = "Debbie",
-                Interests = new List<int>(){1,3,4}
+                Interests = new List<int>(){1,3,4},
+                ReleaseDate = new DateTime(2050, 3, 20)
             }
         };
 
@@ -64,6 +67,21 @@ namespace ClinkedIn.Data
             }
             // remove duplicate members that matched on multiple IDs
             return matchedMembers.Distinct().ToList();
+        }
+
+        public int[] RemoveInterest(RemoveInterest interestsToRemove)
+        {
+            Member currentMemb = GetMember(interestsToRemove.MemberId);
+            if (!currentMemb.Interests.Intersect(interestsToRemove.InterestId).Any())
+            {
+                throw new Exception("Ya done goofed");
+            }
+            currentMemb.Interests.RemoveAll(membersInterests => 
+            interestsToRemove
+            .InterestId
+            .Contains(membersInterests));
+
+            return interestsToRemove.InterestId;
         }
     }
 }
