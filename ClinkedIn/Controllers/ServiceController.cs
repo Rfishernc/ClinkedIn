@@ -15,7 +15,7 @@ namespace ClinkedIn.Controllers
             _memberRepo = new MemberRepo();
         }
 
-        [HttpGet]
+        [HttpPost]
         // body should contain "MemberId" and "Services" (an array of string)
         public ActionResult<Member> AddMemberServices(AddService addServiceRequest)
         {
@@ -30,5 +30,10 @@ namespace ClinkedIn.Controllers
 
             return currentMemb;
         }
+
+        [HttpDelete]
+        // Pass a member ID and an array of services to remove
+        public ActionResult<Member> RemoveMemberServices(RemoveService removeServiceRequest) => _memberRepo
+                                                                                    .RemoveServices(removeServiceRequest);
     }
 }
