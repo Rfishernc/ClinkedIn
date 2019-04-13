@@ -83,14 +83,16 @@ namespace ClinkedIn.Controllers
             return Accepted($"api/members/{user.Id}/enemies", user.Enemies);
         }
 
-        [HttpGet("friends")]
-        public ActionResult GetFriends(GetFriendsRequest getFriendsRequest)
+        /*  Send member id in the url*/
+
+        [HttpGet("{id}/friends")]
+        public ActionResult GetFriends(int id)
         {
             if (!_validator.ValidateGetFriends())
             {
                 return BadRequest();
             }
-            var user = _memberRepo.GetMember(getFriendsRequest.FriendId);
+            var user = _memberRepo.GetMember(id);
             var friends = user.GetFriends();
 
             return Accepted($"api/members/{user.Id}/friends", user.Friends);

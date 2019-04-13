@@ -50,7 +50,10 @@ namespace ClinkedIn.Models
 
         public List<Member> GetFriends()
         {
-            var friendsList =
+            var friendsList = from friend in Friends
+                              join member in MemberRepo._Members on friend equals member.Id
+                              select member;
+            return friendsList.ToList();
         }
 
         // converts interest IDs to strings
