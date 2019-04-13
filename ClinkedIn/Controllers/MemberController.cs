@@ -27,20 +27,19 @@ namespace ClinkedIn.Controllers
         public ActionResult<MemberWithInterestDescription> GetMember(int id) => _memberRepo.GetMember(id).ConvertInterests();
 
 
-
-        /* Send the following in the body
-         * MemberId: int
+        /* Send get to member id/enemies
          * Returns list of all members enemies with their information*/
 
-        [HttpGet("enemies")]
-        public ActionResult GetEnemies(GetEnemiesRequest enemiesRequest)
+
+        [HttpGet("{id}/enemies")]
+        public ActionResult GetEnemies(int id)
         {
-            var validation = _validator.ValidateGetEnemies(enemiesRequest);
+            var validation = _validator.ValidateGetEnemies(id);
             if (!validation.IsValid)
             {
                 return BadRequest(new { error = validation.ErrorMessage });
             }
-            var user = _memberRepo.GetMember(enemiesRequest.MemberId);
+            var user = _memberRepo.GetMember(id);
             var enemiesList = user.GetEnemies();
             return Accepted($"api/members/{user.Id}/enemies", enemiesList);
         }
@@ -113,20 +112,21 @@ namespace ClinkedIn.Controllers
 
         /* Send the following in the body
         * MemberId: int,
+        /* Send get to member id/release
         * Returns number of days left in members sentence. */
 
+        [HttpGet("{id}/release")]
+        public ActionResult GetReleaseDays(int id)
 
-        [HttpGet("release")]
-        public ActionResult GetReleaseDays(GetReleaseDaysRequest releaseDaysRequest)
         {
-            var validation = _validator.ValidateGetReleaseDays(releaseDaysRequest);
+            var validation = _validator.ValidateGetReleaseDays(id);
             if (!validation.IsValid)
             {
                 return BadRequest(new { error = validation.ErrorMessage });
             }
 
-            var user = _memberRepo.GetMember(releaseDaysRequest.MemberId);
-            var releaseDays = user.DaysToRelease();
+            var user = _memberRepo.GetMember(id);
+            var releaseDays = user.DaysToRelease() + " days till release.";
 
             return Accepted($"api/members/{user.Id}", releaseDays);
         }
