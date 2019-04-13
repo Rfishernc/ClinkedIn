@@ -95,7 +95,7 @@ namespace ClinkedIn.Controllers
             var user = _memberRepo.GetMember(id);
             var friends = user.GetFriends();
 
-            return Accepted($"api/members/{user.Id}/friends", user.Friends);
+            return Accepted($"api/members/{user.Id}/friends", friends);
         }
 
         /* Send the following in the body
