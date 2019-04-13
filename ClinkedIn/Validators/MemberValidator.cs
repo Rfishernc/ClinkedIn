@@ -84,9 +84,22 @@ namespace ClinkedIn.Validators
             return new ValidationResponse(true);
         }
 
+
         public bool ValidateGetFriends()
         {
             return true;
+        }
+
+        public ValidationResponse ValidateFriendsFriends(int request)
+        {
+            if (MemberRepo._Members.Where(member => member.Id == request).Count() == 0)
+            {
+                return new ValidationResponse(false, "Invalid member Id. No member found with matching Id.");
+            } else if (MemberRepo._Members.First(member => member.Id == request).Friends.Count == 0)
+            {
+                return new ValidationResponse(false, "You don't have any friends, loser.");
+            }
+                return new ValidationResponse(true);
         }
     }
 }

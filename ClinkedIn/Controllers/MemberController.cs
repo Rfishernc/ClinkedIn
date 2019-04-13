@@ -122,6 +122,11 @@ namespace ClinkedIn.Controllers
         [HttpGet("{id}/friendssquared")]
         public ActionResult GetFriendsFriends(int id)
         {
+            var validation = _validator.ValidateFriendsFriends(id);
+            if (!validation.IsValid)
+            {
+                return BadRequest(new { error = validation.ErrorMessage });
+            }
             var user = _memberRepo.GetMember(id);
             var friends = user.GetFriends();
             var friendsFriends = new Dictionary<string, List<MemberWithDescriptions>>();
