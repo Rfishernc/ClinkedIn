@@ -35,7 +35,7 @@ ReleaseDate: {YYYY/MM/DD}
 "Username": "Nathan",
 "Interests": [0,3,4],
 "Services": ["building shanks", "using shanks", "smelling flowers"],
-ReleaseDate: "2099/12/26"
+"ReleaseDate": "2099/12/26"
 ```
 
 ## Post User Enemy
