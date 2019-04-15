@@ -146,6 +146,6 @@ Header - Authorization: Value - {Authorization ID}
 ```
 ### Example
 ```
-Authorization: 123456
+"Authorization": 123456
 ```
 
