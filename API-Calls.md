@@ -52,7 +52,15 @@ EnemyId: {int matching member to be added as enemy}
 ```
 
 ## Post User Friend
-WIP
+`member/0/friends` - member/{id}/friends
+Pass the user ID in the URL and the friend to add in the body of the request.
+```
+FriendId: {int matching the friend to add}
+```
+### Example
+```
+"FriendId": 3
+```
 
 ## Delete User Enemy
 `member/enemies` - member/enemies --
@@ -68,7 +76,15 @@ EnemyId: {int matching member to be removed as enemy}
 ```
 
 ## Delete User Friend
-WIP
+`member/0/friends` - member/{id}/friends
+Pass the users ID in the URL and the ID of the friend to remove in the body.
+```
+FriendId: {Int matching a friends ID to remove}
+```
+### Example
+```
+"FriendId": 0
+```
 
 ## Get Friends by interest
 `findmembers` - findmembers --
